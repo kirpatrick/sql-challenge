@@ -1,6 +1,88 @@
--- schema_legacyEmployeeAnalysis.sql
+-- Exported from QuickDBD: https://www.quickdatabasediagrams.com/
+-- Link to schema: https://app.quickdatabasediagrams.com/#/d/QuX6TW
+-- NOTE! If you have used non-SQL datatypes in your design, you will have to change these here.
 
--- Use this schema to create the tables necessary to analyze Pewlett Hackard
--- employee data from the 1980s and 1990s
 
--- See the Legacy Employee Analysis ERD for table relationship mapping.
+CREATE TABLE "Departments" (
+    "Depts_ID" SERIAL   NOT NULL,
+    "Depts_DepartmentNumber" INTEGER   NOT NULL,
+    "Depts_DepartmentName" VARCHAR   NOT NULL,
+    CONSTRAINT "pk_Departments" PRIMARY KEY (
+        "Depts_DepartmentNumber"
+     )
+);
+
+CREATE TABLE "DepartmentEmployees" (
+    "DeptEmpl_ID" SERIAL   NOT NULL,
+    "DeptEmpl_EmployeeNumber" INTEGER   NOT NULL,
+    "DeptEmpl_DepartmentNumber" INTEGER   NOT NULL,
+    "DeptEmpl_FromDate" DATE   NOT NULL,
+    "DeptEmpl_ToDate" DATE   NOT NULL,
+    CONSTRAINT "pk_DepartmentEmployees" PRIMARY KEY (
+        "DeptEmpl_ID"
+     )
+);
+
+CREATE TABLE "DepartmentManager" (
+    "DeptMgr_ID" SERIAL   NOT NULL,
+    "DeptMgr_DepartmentNumber" INTEGER   NOT NULL,
+    "DeptMgr_EmployeeNumber" INTEGER   NOT NULL,
+    "DeptMgr_FromDate" DATE   NOT NULL,
+    "DeptMgr_ToDate" DATE   NOT NULL,
+    CONSTRAINT "pk_DepartmentManager" PRIMARY KEY (
+        "DeptMgr_ID"
+     )
+);
+
+CREATE TABLE "Employees" (
+    "Employees_ID" SERIAL   NOT NULL,
+    "Employees_EmployeeNumber" INTEGER   NOT NULL,
+    "Employees_Birthdate" DATE   NOT NULL,
+    "Employees_FirstName" VARCHAR   NOT NULL,
+    "Employees_LastName" VARCHAR   NOT NULL,
+    "Employees_Gender" VARCHAR   NOT NULL,
+    "Employees_HireDate" DATE   NOT NULL,
+    CONSTRAINT "pk_Employees" PRIMARY KEY (
+        "Employees_EmployeeNumber"
+     )
+);
+
+CREATE TABLE "Salaries" (
+    "Salaries_ID" SERIAL   NOT NULL,
+    "Salaries_EmployeeNumber" INTEGER   NOT NULL,
+    "Salaries_FromDate" DATE   NOT NULL,
+    "Salaries_ToDate" DATE   NOT NULL,
+    CONSTRAINT "pk_Salaries" PRIMARY KEY (
+        "Salaries_ID"
+     )
+);
+
+CREATE TABLE "Titles" (
+    "Titles_ID" SERIAL   NOT NULL,
+    "Titles_EmployeeNumber" INTEGER   NOT NULL,
+    "Titles_Title" VARCHAR   NOT NULL,
+    "Titles_FromDate" DATE   NOT NULL,
+    "Titles_ToDAte" DATE   NOT NULL,
+    CONSTRAINT "pk_Titles" PRIMARY KEY (
+        "Titles_ID"
+     )
+);
+
+ALTER TABLE "DepartmentEmployees" ADD CONSTRAINT "fk_DepartmentEmployees_DeptEmpl_EmployeeNumber" FOREIGN KEY("DeptEmpl_EmployeeNumber")
+REFERENCES "Employees" ("Employees_EmployeeNumber");
+
+ALTER TABLE "DepartmentEmployees" ADD CONSTRAINT "fk_DepartmentEmployees_DeptEmpl_DepartmentNumber" FOREIGN KEY("DeptEmpl_DepartmentNumber")
+REFERENCES "Departments" ("Depts_DepartmentNumber");
+
+ALTER TABLE "DepartmentManager" ADD CONSTRAINT "fk_DepartmentManager_DeptMgr_DepartmentNumber" FOREIGN KEY("DeptMgr_DepartmentNumber")
+REFERENCES "Departments" ("Depts_DepartmentNumber");
+
+ALTER TABLE "DepartmentManager" ADD CONSTRAINT "fk_DepartmentManager_DeptMgr_EmployeeNumber" FOREIGN KEY("DeptMgr_EmployeeNumber")
+REFERENCES "Employees" ("Employees_EmployeeNumber");
+
+ALTER TABLE "Salaries" ADD CONSTRAINT "fk_Salaries_Salaries_EmployeeNumber" FOREIGN KEY("Salaries_EmployeeNumber")
+REFERENCES "Employees" ("Employees_EmployeeNumber");
+
+ALTER TABLE "Titles" ADD CONSTRAINT "fk_Titles_Titles_EmployeeNumber" FOREIGN KEY("Titles_EmployeeNumber")
+REFERENCES "Employees" ("Employees_EmployeeNumber");
+
