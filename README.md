@@ -30,12 +30,12 @@ Use PostgreSQL and Jupyter Notebook to analyze corporate historical data current
 *Data Validation using Pandas (histogram and bar chart visualizations)*
 
 ## Solution
-1. Install dependencies listed in the [Tech Stack](#tech-stack).
+1. Install dependencies listed in the Tech Stack.
 2. Clone this repository to your development environment.
 3. Use the schema_legacyEmployeeAnalysis.sql file to create the necessary tables.  See the Legacy Employee Analysis - Entity Relationship Diagram (ERD) for an explanation of table relationships.
 4. Upload the (.csv) files in the [data](https://github.com/kirpatrick/sql-challenge/tree/master/EmployeeSQL/data) directory to the SQL tables created in step 3.
 5. Execute the SQL queries in legacyEmployeeAnalysis.sql for [analysis detail](#Analysis-Detail) results.
-6. Use the Jupyter Notebook [TBD](https://github.com/kirpatrick/sql-challenge) to connect PostgreSQL to view the [optional analysis](#Optional-Analysis) results.
+6. Use the Jupyter Notebook [employeeSQL_salaryAnalysis](https://nbviewer.jupyter.org/github/kirpatrick/sql-challenge/blob/master/EmployeeSQL/employeeSQL_salaryAnalysis.ipynb) to connect PostgreSQL to view the [optional analysis](#Optional-Analysis) results.
 
 ## Source
 [SMU DS Boot Camp - SQL Challenge](https://smu.bootcampcontent.com/SMU-Coding-Bootcamp/SMU-DAL-DATA-PT-11-2019-U-C/tree/master/02-Homework/09-SQL/Instructions)
