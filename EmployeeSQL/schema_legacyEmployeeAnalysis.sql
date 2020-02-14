@@ -12,17 +12,25 @@ CREATE TABLE Departments (
 );
 
 CREATE TABLE DepartmentEmployees (
+    ID INTEGER   NOT NULL,
     DeptEmpl_EmployeeNumber INTEGER   NOT NULL,
     DeptEmpl_DepartmentNumber VARCHAR   NOT NULL,
     DeptEmpl_FromDate DATE   NOT NULL,
-    DeptEmpl_ToDate DATE   NOT NULL
+    DeptEmpl_ToDate DATE   NOT NULL,
+    CONSTRAINT pk_DepartmentEmployees PRIMARY KEY (
+        ID
+     )
 );
 
 CREATE TABLE DepartmentManager (
+    ID INTEGER   NOT NULL,
     DeptMgr_DepartmentNumber VARCHAR   NOT NULL,
     DeptMgr_EmployeeNumber INTEGER   NOT NULL,
     DeptMgr_FromDate DATE   NOT NULL,
-    DeptMgr_ToDate DATE   NOT NULL
+    DeptMgr_ToDate DATE   NOT NULL,
+    CONSTRAINT pk_DepartmentManager PRIMARY KEY (
+        ID
+     )
 );
 
 CREATE TABLE Employees (
@@ -38,17 +46,25 @@ CREATE TABLE Employees (
 );
 
 CREATE TABLE Salaries (
+    ID INTEGER   NOT NULL,
     Salaries_EmployeeNumber INTEGER   NOT NULL,
-	Salaries_Salary INTEGER   NOT NULL,
+    Salaries_Salary INTEGER   NOT NULL,
     Salaries_FromDate DATE   NOT NULL,
-    Salaries_ToDate DATE   NOT NULL
+    Salaries_ToDate DATE   NOT NULL,
+    CONSTRAINT pk_Salaries PRIMARY KEY (
+        ID
+     )
 );
 
 CREATE TABLE Titles (
+    ID INTEGER   NOT NULL,
     Titles_EmployeeNumber INTEGER   NOT NULL,
     Titles_Title VARCHAR   NOT NULL,
     Titles_FromDate DATE   NOT NULL,
-    Titles_ToDate DATE   NOT NULL
+    Titles_ToDate DATE   NOT NULL,
+    CONSTRAINT pk_Titles PRIMARY KEY (
+        ID
+     )
 );
 
 ALTER TABLE DepartmentEmployees ADD CONSTRAINT fk_DepartmentEmployees_DeptEmpl_EmployeeNumber FOREIGN KEY(DeptEmpl_EmployeeNumber)
