@@ -153,7 +153,37 @@
 -- -- Design (Plan of attack)
 -- -- a. Decide what data will be needed.
 -- --	Just salaries data?
+
+
+
+
+
+-- lowest 40000, highest 129492, 210,101 total distinct rows
 -- SELECT * FROM salaries
+-- SELECT DISTINCT
+-- 	titles_title title,
+-- 	to_char(AVG(salaries_salary),'99,999,999,999,999,990D99') avg_annual_salary
+-- -- 	EXTRACT(YEAR FROM salaries_todate) ending_year
+-- FROM salaries s
+-- INNER JOIN titles t ON
+-- 	s.salaries_employeenumber = t.titles_employeenumber
+-- GROUP BY title
+
+-- -- -- -- -- -- -- 
+CREATE VIEW vw_salary_range AS
+	SELECT DISTINCT
+		titles_title title,
+		to_char(AVG(salaries_salary),'99,999,999,999,999,990D99') avg_annual_salary
+	FROM salaries s
+	LEFT JOIN titles t ON
+		s.salaries_employeenumber = t.titles_employeenumber
+	GROUP BY title
+
+
+
+
+
+
 -- -- b. Create a Summary query of the data that is needed.  Goal:  Do as much joining & aggregation in SQL as possible.
 -- -- c. Decide if you need to create a 'View' or 'Physical' table of the Summary.  Goal:  Makes sure this will work in Jupyter Notebook.
 -- -- d. Make the connection to the Summary data in Jupyter Notebook.
