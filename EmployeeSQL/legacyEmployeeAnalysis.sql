@@ -173,7 +173,8 @@
 CREATE VIEW vw_salary_range AS
 	SELECT DISTINCT
 		titles_title title,
-		to_char(AVG(salaries_salary),'99,999,999,999,999,990D99') avg_annual_salary
+-- 		to_char(AVG(salaries_salary),'99,999,999,999,999,990D99')::double precision AS _float8-- avg_annual_salary
+		AVG(salaries_salary) ::real AS avg_annual_salary
 	FROM salaries s
 	LEFT JOIN titles t ON
 		s.salaries_employeenumber = t.titles_employeenumber
