@@ -153,8 +153,8 @@
 -- -- Design (Plan of attack)
 -- -- a. Decide what data will be needed.
 -- --	Just salaries data?
-
-
+SELECT * FROM salaries
+WHERE salaries_salary <= 55000
 
 
 
@@ -170,15 +170,15 @@
 -- GROUP BY title
 
 -- -- -- -- -- -- -- 
-CREATE VIEW vw_salary_range AS
-	SELECT DISTINCT
-		titles_title title,
--- 		to_char(AVG(salaries_salary),'99,999,999,999,999,990D99')::double precision AS _float8-- avg_annual_salary
-		AVG(salaries_salary) ::real AS avg_annual_salary
-	FROM salaries s
-	LEFT JOIN titles t ON
-		s.salaries_employeenumber = t.titles_employeenumber
-	GROUP BY title
+-- -- CREATE VIEW vw_salary_range AS
+-- 	SELECT DISTINCT
+-- 		titles_title title,
+-- -- 		to_char(AVG(salaries_salary),'99,999,999,999,999,990D99')::double precision AS _float8-- avg_annual_salary
+-- 		AVG(salaries_salary)::real AS avg_annual_salary
+-- 	FROM salaries s
+-- 	LEFT JOIN titles t ON
+-- 		s.salaries_employeenumber = t.titles_employeenumber
+-- 	GROUP BY title
 
 
 
