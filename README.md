@@ -38,9 +38,9 @@ Data Validation using Pandas (histogram and bar chart visualizations)
 ## Solution
 1. Install dependencies listed in the Tech Stack.
 2. Clone this repository to your development environment.
-3. Use the **schema_legacyEmployeeAnalysis.sql** file to create the necessary tables.  See the *Legacy Employee Analysis - Entity Relationship Diagram (ERD)* PDF and PNG for an explanation of table relationships.
+3. Use the [schema_legacyEmployeeAnalysis.sql](https://github.com/kirpatrick/sql-challenge/blob/master/EmployeeSQL/schema_legacyEmployeeAnalysis.sql) file to create the necessary tables.  See the [Legacy Employee ERD](https://github.com/kirpatrick/sql-challenge/blob/master/EmployeeSQL/Legacy_Employee_ERD.png) and [Legacy Employee Entites Description](https://github.com/kirpatrick/sql-challenge/blob/master/EmployeeSQL/Legacy_Employee_Entites.pdf) for an explanation of table relationships.
 4. Upload the (.csv) files in the [data](https://github.com/kirpatrick/sql-challenge/tree/master/EmployeeSQL/data) directory to the SQL tables created in step 3.
-5. Execute the SQL queries in **legacyEmployeeAnalysis.sql** for [analysis detail](#Analysis-Detail) results.
+5. Execute the SQL queries in [legacyEmployeeAnalysis.sql](https://github.com/kirpatrick/sql-challenge/blob/master/EmployeeSQL/legacyEmployeeAnalysis.sql) for [analysis detail](#Analysis-Detail) results.
 6. Use your local copy of [employeeSQL_salaryAnalysis.ipynb](https://nbviewer.jupyter.org/github/kirpatrick/sql-challenge/blob/master/EmployeeSQL/employeeSQL_salaryAnalysis.ipynb) to connect PostgreSQL to view the [optional analysis](#Optional-Analysis) results.
 
 ## Source
