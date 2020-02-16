@@ -1,9 +1,23 @@
 -- -- legacyEmployeeAnalysis.sql
--- -- 
+
+-- -- # Employee Salary Analysis
+
+-- -- ### Researcher(s):  Kirpatrick Dorsey
+
+-- -- ### Date:  February 15, 2020
+
+-- -- ### Source(s):
+-- -- [SMU Data Science Bootcamp - Postgres SQL Challenge](https://smu.bootcampcontent.com/SMU-Coding-Bootcamp/SMU-DAL-DATA-PT-11-2019-U-C/blob/master/02-Homework/09-SQL/Instructions/README.md)
+
+-- -- ## Summary
+-- -- Use PostgreSQL and Jupyter Notebook to analyze corporate historical data currently stored in multiple comma delimited (.csv) files.
+
+-- -- See the README.md in the root directory for more information. 
 
 -- -- /***********************************************************/
--- -- Check data import
+-- -- Import .csv data using pgAdmin import wizard.  E.g. Rt+Click table name and select Import/Export.
 
+-- -- Check data import
 -- SELECT COUNT (*) FROM
 -- SELECT * FROM
 -- DepartmentEmployees -- count=331603
@@ -128,78 +142,24 @@ GROUP BY employees_lastname
 ORDER BY lastnamecount DESC
 
 
--- -- ## Bonus (Optional)
+-- -- /***********************************************************/
+-- -- Bonus (Optional) -- -- 
 
--- -- As you examine the data, you are overcome with a creeping suspicion that the dataset is fake. You surmise that your boss handed you spurious data in order to test the data engineering skills of a new employee. To confirm your hunch, you decide to take the following steps to generate a visualization of the data, with which you will confront your boss:
+-- -- Connect to salary data in Jupyter Notebook, using SQLAlchemy.  Generate a visualization to:
+-- -- 1. Create a histogram to visualize the most common salary ranges for employees.
+-- -- 2. Create a bar chart of average salary by title.
 
--- -- 1. Import the SQL database into Pandas. (Yes, you could read the CSVs directly in Pandas, but you are, after all, trying to prove your technical mettle.) This step may require some research. Feel free to use the code below to get started. Be sure to make any necessary modifications for your username, password, host, port, and database name:
--- --    ```sql
--- --    from sqlalchemy import create_engine
--- --    engine = create_engine('postgresql://localhost:5432/<your_db_name>')
--- --    connection = engine.connect()
--- --    ```
--- -- * Consult [SQLAlchemy documentation](https://docs.sqlalchemy.org/en/latest/core/engines.html#postgresql) for more information.
--- -- * If using a password, do not upload your password to your GitHub repository. See [https://www.youtube.com/watch?v=2uaTPmNvH0I](https://www.youtube.com/watch?v=2uaTPmNvH0I) and [https://martin-thoma.com/configuration-files-in-python/](https://martin-thoma.com/configuration-files-in-python/) for more information.
+-- -- Solution Approach -- -- 
 
--- -- Design (Plan of attack)
--- -- a. Decide what data will be needed.
--- --	Just salaries data?
-SELECT * FROM salaries
-WHERE salaries_salary <= 55000
+-- -- Create a view to join the 'title' and 'salaries' tables.
+-- -- Aggregate salaries by title
+-- CREATE VIEW vw_salary_range AS
+	SELECT DISTINCT
+		titles_title title,
+		AVG(salaries_salary)::real AS avg_annual_salary
+	FROM salaries s
+	LEFT JOIN titles t ON
+		s.salaries_employeenumber = t.titles_employeenumber
+	GROUP BY title
 
-
-
--- lowest 40000, highest 129492, 210,101 total distinct rows
--- SELECT * FROM salaries
--- SELECT DISTINCT
--- 	titles_title title,
--- 	to_char(AVG(salaries_salary),'99,999,999,999,999,990D99') avg_annual_salary
--- -- 	EXTRACT(YEAR FROM salaries_todate) ending_year
--- FROM salaries s
--- INNER JOIN titles t ON
--- 	s.salaries_employeenumber = t.titles_employeenumber
--- GROUP BY title
-
--- -- -- -- -- -- -- 
--- -- CREATE VIEW vw_salary_range AS
--- 	SELECT DISTINCT
--- 		titles_title title,
--- -- 		to_char(AVG(salaries_salary),'99,999,999,999,999,990D99')::double precision AS _float8-- avg_annual_salary
--- 		AVG(salaries_salary)::real AS avg_annual_salary
--- 	FROM salaries s
--- 	LEFT JOIN titles t ON
--- 		s.salaries_employeenumber = t.titles_employeenumber
--- 	GROUP BY title
-
-
-
-
-
-
--- -- b. Create a Summary query of the data that is needed.  Goal:  Do as much joining & aggregation in SQL as possible.
--- -- c. Decide if you need to create a 'View' or 'Physical' table of the Summary.  Goal:  Makes sure this will work in Jupyter Notebook.
--- -- d. Make the connection to the Summary data in Jupyter Notebook.
-
--- -- 2. Create a histogram to visualize the most common salary ranges for employees.
-		---	See the Jupyter Notebook ---
-
--- -- 3. Create a bar chart of average salary by title.
-		---	See the Jupyter Notebook ---
-
-
-
--- -- May need to add primary keys so they're classes are seen in Jupyter
--- -- Notebook with automap_base
-
--- -- Adding PK assignment to existing column. -- --
--- ALTER TABLE departmentmanager ADD PRIMARY KEY (deptmgr_employeenumber);
--- SELECT * FROM departmentmanager
-
--- -- Adding new serial PK id to an existing table -- --
--- ALTER TABLE salaries ADD COLUMN ID SERIAL PRIMARY KEY;
--- SELECT * FROM salaries
-
--- -- May need to remove existing primary key assignment. -- --
--- Possibility that key may not be unique in the future.
--- ALTER TABLE departmentmanager DROP CONSTRAINT departmentmanager_pkey;
--- SELECT * FROM departmentmanager
+		---	See the employeeSQL_salaryAnalysis.ipynb for histograms and bar charts ---
