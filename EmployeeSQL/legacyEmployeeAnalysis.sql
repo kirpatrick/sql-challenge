@@ -1,4 +1,5 @@
 -- -- legacyEmployeeAnalysis.sql
+-- -- 
 
 -- -- /***********************************************************/
 -- -- Check data import
@@ -15,7 +16,6 @@
 -- WHERE DeptEmpl_ToDate != '9999-01-01' :: date
 -- LIMIT 10
 
--- -- /***********************************************************/
 -- -- OBSERVATIONS ----
 
 -- -- I.
@@ -30,111 +30,102 @@
 
 -- -- 1.
 -- -- List the following details of each employee: employee number, last name, first name, gender, and salary.
-
--- SELECT  -- count(*) -- 300024 records
--- 	e.employees_employeenumber,
--- 	e.employees_lastname,
--- 	e.employees_firstname,
--- 	e.employees_gender,
--- 	s.salaries_salary
--- FROM employees e
--- INNER JOIN salaries s ON
--- e.employees_employeenumber = s.salaries_employeenumber
--- ORDER BY e.employees_employeenumber
+SELECT
+	e.employees_employeenumber,
+	e.employees_lastname,
+	e.employees_firstname,
+	e.employees_gender,
+	s.salaries_salary
+FROM employees e
+INNER JOIN salaries s ON
+e.employees_employeenumber = s.salaries_employeenumber
+ORDER BY e.employees_employeenumber
 
 
 -- -- 2.
 -- -- List employees who were hired in 1986.
-
--- -- SELECT COUNT(*) FROM employees -- 36150 records
--- SELECT * FROM employees
--- WHERE employees_hiredate::text LIKE '1986%'
+SELECT * FROM employees
+WHERE employees_hiredate::text LIKE '1986%'
 
 
 -- -- 3.
 -- -- List the manager of each department with the following information: department number, department name, the manager's employee number, last name, first name, and start and end employment dates.
-
--- SELECT -- count(*) -- 24 records; matches departmentmanager records count
--- 	dm.deptmgr_departmentnumber as deptNum,
--- 	d.depts_departmentname as deptName,
--- 	e.employees_employeenumber as mgrEmplNo,
--- 	e.employees_lastname as mgrLastName,
--- 	e.employees_firstname as mgrFirstName,
--- 	dm.deptmgr_fromdate as startDate,
--- 	dm.deptmgr_todate as endDate
--- FROM employees e
--- INNER JOIN departmentmanager dm ON
--- e.employees_employeenumber = dm.deptmgr_employeenumber
--- 	LEFT JOIN departments d ON
--- 	dm.deptmgr_departmentnumber = d.depts_departmentnumber
--- ORDER BY deptNum
+SELECT
+	dm.deptmgr_departmentnumber as deptNum,
+	d.depts_departmentname as deptName,
+	e.employees_employeenumber as mgrEmplNo,
+	e.employees_lastname as mgrLastName,
+	e.employees_firstname as mgrFirstName,
+	dm.deptmgr_fromdate as startDate,
+	dm.deptmgr_todate as endDate
+FROM employees e
+INNER JOIN departmentmanager dm ON
+e.employees_employeenumber = dm.deptmgr_employeenumber
+	LEFT JOIN departments d ON
+	dm.deptmgr_departmentnumber = d.depts_departmentnumber
+ORDER BY deptNum
 
 
 -- -- 4.
 -- -- List the department of each employee with the following information: employee number, last name, first name, and department name.
-
--- SELECT --count(*) -- 331603 records; Matches DepartmentEmployees record count
--- 	e.employees_employeenumber as emplNo,
--- 	e.employees_lastname as lastName,
--- 	e.employees_firstname as firstName,
--- 	d.depts_departmentname as deptName
--- FROM employees e
--- INNER JOIN departmentemployees de ON
--- e.employees_employeenumber = de.deptempl_employeenumber
--- 	LEFT JOIN departments d ON
--- 	de.deptempl_departmentnumber = d.depts_departmentnumber
--- ORDER BY emplNo
+SELECT
+	e.employees_employeenumber as emplNo,
+	e.employees_lastname as lastName,
+	e.employees_firstname as firstName,
+	d.depts_departmentname as deptName
+FROM employees e
+INNER JOIN departmentemployees de ON
+e.employees_employeenumber = de.deptempl_employeenumber
+	LEFT JOIN departments d ON
+	de.deptempl_departmentnumber = d.depts_departmentnumber
+ORDER BY emplNo
 
 
 -- -- 5.
 -- -- List all employees whose first name is "Hercules" and last names begin with "B."
-
--- SELECT * FROM employees
--- WHERE employees_firstname = 'Hercules'
--- 	AND employees_lastname LIKE 'B%'
--- ORDER BY employees_lastname
+SELECT * FROM employees
+WHERE employees_firstname = 'Hercules'
+	AND employees_lastname LIKE 'B%'
+ORDER BY employees_lastname
 
 
 -- -- 6.
 -- -- List all employees in the Sales department, including their employee number, last name, first name, and department name.
-
--- SELECT
--- 	e.employees_employeenumber as emplNo,
--- 	e.employees_lastname as lastName,
--- 	e.employees_firstname as firstName,
--- 	d.depts_departmentname as deptName
--- FROM employees e
--- INNER JOIN departmentemployees de ON
--- e.employees_employeenumber = de.deptempl_employeenumber
--- 	LEFT JOIN departments d ON
--- 	de.deptempl_departmentnumber = d.depts_departmentnumber
--- WHERE d.depts_departmentname = 'Sales'
+SELECT
+	e.employees_employeenumber as emplNo,
+	e.employees_lastname as lastName,
+	e.employees_firstname as firstName,
+	d.depts_departmentname as deptName
+FROM employees e
+INNER JOIN departmentemployees de ON
+e.employees_employeenumber = de.deptempl_employeenumber
+	LEFT JOIN departments d ON
+	de.deptempl_departmentnumber = d.depts_departmentnumber
+WHERE d.depts_departmentname = 'Sales'
 
 
 -- -- 7.
 -- -- List all employees in the Sales and Development departments, including their employee number, last name, first name, and department name.
-
--- SELECT
--- 	e.employees_employeenumber as emplNo,
--- 	e.employees_lastname as lastName,
--- 	e.employees_firstname as firstName,
--- 	d.depts_departmentname as deptName
--- FROM employees e
--- INNER JOIN departmentemployees de ON
--- e.employees_employeenumber = de.deptempl_employeenumber
--- 	LEFT JOIN departments d ON
--- 	de.deptempl_departmentnumber = d.depts_departmentnumber
--- WHERE d.depts_departmentname IN ('Sales','Development')
+SELECT
+	e.employees_employeenumber as emplNo,
+	e.employees_lastname as lastName,
+	e.employees_firstname as firstName,
+	d.depts_departmentname as deptName
+FROM employees e
+INNER JOIN departmentemployees de ON
+e.employees_employeenumber = de.deptempl_employeenumber
+	LEFT JOIN departments d ON
+	de.deptempl_departmentnumber = d.depts_departmentnumber
+WHERE d.depts_departmentname IN ('Sales','Development')
 
 
 -- -- 8.
 -- -- In descending order, list the frequency count of employee last names, i.e., how many employees share each last name.
-
--- SELECT employees_lastname,
--- 	COUNT(employees_lastname) as lastnamecount
--- FROM employees
--- GROUP BY employees_lastname
--- ORDER BY lastnamecount DESC
+SELECT employees_lastname,
+	COUNT(employees_lastname) as lastnamecount
+FROM employees
+GROUP BY employees_lastname
+ORDER BY lastnamecount DESC
 
 
 -- -- ## Bonus (Optional)
