@@ -1,6 +1,12 @@
 # sql-challenge
 HR Data Analysis
 
+### Researcher
+Kirpatrick Dorsey
+
+### Created
+February 15, 2020
+
 ## Project Overview
 Use PostgreSQL and Jupyter Notebook to analyze corporate historical data currently stored in multiple comma delimited (.csv) files.
 
@@ -27,14 +33,14 @@ Use PostgreSQL and Jupyter Notebook to analyze corporate historical data current
 - List the frequency count of Employee Last Names, i.e., how many employees share each last name... (In descending order)
 
 ## **Optional Analysis*
-*Data Validation using Pandas (histogram and bar chart visualizations)*
+Data Validation using Pandas (histogram and bar chart visualizations)
 
 ## Solution
 1. Install dependencies listed in the Tech Stack.
 2. Clone this repository to your development environment.
-3. Use the schema_legacyEmployeeAnalysis.sql file to create the necessary tables.  See the Legacy Employee Analysis - Entity Relationship Diagram (ERD) for an explanation of table relationships.
+3. Use the **schema_legacyEmployeeAnalysis.sql** file to create the necessary tables.  See the *Legacy Employee Analysis - Entity Relationship Diagram (ERD)* PDF and PNG for an explanation of table relationships.
 4. Upload the (.csv) files in the [data](https://github.com/kirpatrick/sql-challenge/tree/master/EmployeeSQL/data) directory to the SQL tables created in step 3.
-5. Execute the SQL queries in legacyEmployeeAnalysis.sql for [analysis detail](#Analysis-Detail) results.
+5. Execute the SQL queries in **legacyEmployeeAnalysis.sql** for [analysis detail](#Analysis-Detail) results.
 6. Use your local copy of [employeeSQL_salaryAnalysis.ipynb](https://nbviewer.jupyter.org/github/kirpatrick/sql-challenge/blob/master/EmployeeSQL/employeeSQL_salaryAnalysis.ipynb) to connect PostgreSQL to view the [optional analysis](#Optional-Analysis) results.
 
 ## Source
