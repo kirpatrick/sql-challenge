@@ -25,7 +25,7 @@
 -- Departments -- count=9
 -- Employees -- count=300024
 -- Salaries -- count=300024
--- Titles -- count=886616
+-- Titles -- count=443308
 
 -- WHERE DeptEmpl_ToDate != '9999-01-01' :: date
 -- LIMIT 10
