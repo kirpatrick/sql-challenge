@@ -12,7 +12,7 @@ CREATE TABLE Departments (
 );
 
 CREATE TABLE DepartmentEmployees (
-    ID INTEGER   NOT NULL,
+    ID SERIAL UNIQUE,
     DeptEmpl_EmployeeNumber INTEGER   NOT NULL,
     DeptEmpl_DepartmentNumber VARCHAR   NOT NULL,
     DeptEmpl_FromDate DATE   NOT NULL,
@@ -23,7 +23,7 @@ CREATE TABLE DepartmentEmployees (
 );
 
 CREATE TABLE DepartmentManager (
-    ID INTEGER   NOT NULL,
+    ID SERIAL UNIQUE,
     DeptMgr_DepartmentNumber VARCHAR   NOT NULL,
     DeptMgr_EmployeeNumber INTEGER   NOT NULL,
     DeptMgr_FromDate DATE   NOT NULL,
@@ -46,7 +46,7 @@ CREATE TABLE Employees (
 );
 
 CREATE TABLE Salaries (
-    ID INTEGER   NOT NULL,
+    ID SERIAL UNIQUE,
     Salaries_EmployeeNumber INTEGER   NOT NULL,
     Salaries_Salary INTEGER   NOT NULL,
     Salaries_FromDate DATE   NOT NULL,
@@ -57,7 +57,7 @@ CREATE TABLE Salaries (
 );
 
 CREATE TABLE Titles (
-    ID INTEGER   NOT NULL,
+    ID SERIAL UNIQUE,
     Titles_EmployeeNumber INTEGER   NOT NULL,
     Titles_Title VARCHAR   NOT NULL,
     Titles_FromDate DATE   NOT NULL,
